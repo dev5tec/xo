@@ -160,13 +160,14 @@ type QueryParam struct {
 
 // Query is a template item for a custom query.
 type Query struct {
-	Schema        string
-	Name          string
-	Query         []string
-	QueryComments []string
-	QueryParams   []*QueryParam
-	OnlyOne       bool
-	Interpolate   bool
-	Type          *Type
-	Comment       string
+	Schema            string
+	Name              string
+	Query             []string
+	QueryComments     []string
+	QueryParams       []*QueryParam
+	QueryUniqueParams []*QueryParam
+	OnlyOne           bool
+	Interpolate       bool
+	Type              *Type
+	Comment           string
 }

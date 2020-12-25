@@ -5,7 +5,7 @@
 {{- else -}}
 // {{ .Name }} runs a custom query, returning results as {{ .Type.Name }}.
 {{- end }}
-func {{ .Name }} (db XODB{{ range .QueryParams }}, {{ .Name }} {{ .Type }}{{ end }}) ({{ if not .OnlyOne }}[]{{ end }}*{{ .Type.Name }}, error) {
+func {{ .Name }} (db XODB{{ range .QueryUniqueParams }}, {{ .Name }} {{ .Type }}{{ end }}) ({{ if not .OnlyOne }}[]{{ end }}*{{ .Type.Name }}, error) {
 	var err error
 
 	// sql query

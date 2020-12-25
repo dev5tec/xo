@@ -222,16 +222,26 @@ func (tl TypeLoader) ParseQuery(args *ArgType) error {
 		}
 	}
 
+	paramMap := make(map[string]struct{})
+	uniqueParams := []*QueryParam{}
+	for _, p := range params {
+		if _, ok := paramMap[p.Name]; !ok {
+			paramMap[p.Name] = struct{}{}
+			uniqueParams = append(uniqueParams, p)
+		}
+	}
+
 	// create func template
 	queryTpl := &Query{
-		Name:          funcName,
-		Query:         query,
-		QueryComments: queryComments,
-		QueryParams:   params,
-		OnlyOne:       args.QueryOnlyOne,
-		Interpolate:   args.QueryInterpolate,
-		Type:          typeTpl,
-		Comment:       args.QueryFuncComment,
+		Name:              funcName,
+		Query:             query,
+		QueryComments:     queryComments,
+		QueryParams:       params,
+		QueryUniqueParams: uniqueParams,
+		OnlyOne:           args.QueryOnlyOne,
+		Interpolate:       args.QueryInterpolate,
+		Type:              typeTpl,
+		Comment:           args.QueryFuncComment,
 	}
 
 	// generate template

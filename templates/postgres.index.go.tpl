@@ -52,6 +52,10 @@ func {{ .FuncName }}(db XODB{{ goparamlist .Fields true true }}) ({{ if not .Ind
 		res = append(res, &{{ $short }})
 	}
 
+	err = q.Err()
+	if err != nil {
+		return nil, err
+	}
 	return res, nil
 {{- end }}
 }

@@ -571,7 +571,11 @@ func (a *ArgType) convext(prefix string, f *Field, t *Field) string {
 	}
 
 	if t.Type != ft {
-		expr = t.Type + "(" + expr + ")"
+		if t.Type == "uint" || t.Type == "uint64" {
+			expr = "int" + "(" + expr + ")"
+		} else {
+			expr = t.Type + "(" + expr + ")"
+		}
 	}
 
 	return expr

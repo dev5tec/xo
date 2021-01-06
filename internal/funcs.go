@@ -532,7 +532,11 @@ func (a *ArgType) goparamlist(fields []*Field, addPrefix bool, addType bool, ign
 
 		// add the go type
 		if addType {
-			s += " " + a.retype(f.Type)
+			if f.Type == "uint" || f.Type == "uint64" {
+				s += " " + a.retype("int")
+			} else {
+				s += " " + a.retype(f.Type)
+			}
 		}
 
 		// add to vals

@@ -76,7 +76,7 @@ func ({{ $short }} *{{ .Name }}) Insert(db XODB) error {
 	}
 
 	// set primary key and existence
-	{{ $short }}.{{ .PrimaryKey.Name }} = {{ .PrimaryKey.Type }}(id)
+	{{ $short }}.{{ .PrimaryKey.Name }} = {{ if or (eq .PrimaryKey.Type "uint") (eq .PrimaryKey.Type "uint64") }}int{{ else }}{{ .PrimaryKey.Type }}{{ end }}(id)
 	{{ $short }}._exists = true
 {{ end }}
 

@@ -532,9 +532,10 @@ func (a *ArgType) goparamlist(fields []*Field, addPrefix bool, addType bool, ign
 
 		// add the go type
 		if addType {
-			if f.Type == "uint" || f.Type == "uint64" {
+			switch f.Type {
+			case "uint", "uint64", "sql.NullInt64":
 				s += " " + a.retype("int")
-			} else {
+			default:
 				s += " " + a.retype(f.Type)
 			}
 		}

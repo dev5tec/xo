@@ -736,7 +736,7 @@ func (tl TypeLoader) LoadTableIndexes(args *ArgType, typeTpl *Type, ixMap map[st
 	if args.LoaderType != "godror" && !priIxLoaded && pk != nil {
 		ixName := typeTpl.Table.TableName + "_" + pk.Col.ColumnName + "_pkey"
 		ixMap[ixName] = &Index{
-			FuncName: typeTpl.Name + "By" + pk.Name,
+			FuncName: "By" + pk.Name,
 			Schema:   args.Schema,
 			Type:     typeTpl,
 			Fields:   []*Field{pk},

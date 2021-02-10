@@ -33,6 +33,7 @@ func (a *ArgType) NewTemplateFuncs() template.FuncMap {
 		"hascolumn":          a.hascolumn,
 		"hasfield":           a.hasfield,
 		"getstartcount":      a.getstartcount,
+		"lowerFirstLetter":   a.lowerFirstLetter,
 	}
 }
 
@@ -644,4 +645,13 @@ func (a *ArgType) hasfield(fields []*Field, name string) bool {
 // getstartcount returns a starting count for numbering columsn in queries
 func (a *ArgType) getstartcount(fields []*Field, pkFields []*Field) int {
 	return len(fields) - len(pkFields)
+}
+
+func (a *ArgType) lowerFirstLetter(v string) string {
+	if v == "" {
+		return v
+	}
+
+	rs := []rune(v)
+	return strings.ToLower(string(rs[0])) + string(rs[1:])
 }

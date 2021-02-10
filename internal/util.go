@@ -163,7 +163,7 @@ func (a *ArgType) BuildIndexFuncName(ixTpl *Index) {
 	if !ixTpl.Index.IsUnique {
 		funcName = inflector.Pluralize(ixTpl.Type.Name)
 	}
-	funcName = funcName + "By"
+	funcName = "By"
 
 	// add param names
 	paramNames := []string{}
